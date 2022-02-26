@@ -22,3 +22,8 @@ name = "backend"
     name = "database"
     icon = "database"
     status = "learned"
+
+[groups.cache]
+name = "cache"
+    [groups.cache.skills.memcached]
+    [groups.cache.skills.redis]

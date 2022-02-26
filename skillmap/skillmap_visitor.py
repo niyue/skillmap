@@ -26,6 +26,9 @@ def groups_edges(map_name, groups):
 
 
 def skill_node(skill_id, skill_value):
+    if not skill_value:
+        locked_skill_value = {"name": "???", "icon": "lock", "status": "unknown"}
+        skill_value = locked_skill_value
     skill_name = skill_value.get("name", "")
     skill_icon = get_icon(skill_value)
     skill_status = skill_value.get("status", "new")

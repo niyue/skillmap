@@ -30,6 +30,11 @@ def test_skill_node_with_status():
     sections = ["s1(fa:fa-globe <br/>url validator)", "class s1 beingLearnedSkill;"]
     assert skill_graph.split("\n") == sections
 
+def test_locked_skill_node():
+    skill_graph = skill_node("s1", {})
+    sections = ["s1(fa:fa-lock <br/>???)", "class s1 unknownSkill;"]
+    assert skill_graph.split("\n") == sections
+
 
 def test_visit_group_without_skill():
     group_graph = group_subgraph(
