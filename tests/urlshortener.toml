@@ -11,7 +11,7 @@ requires = ["groups.backend.skills.restapi"]
     requires = ["groups.webui.skills.react"]
     [groups.webui.skills.react]
     name = "react"
-    icon = "html5"
+    icon = "list"
     status = "beingLearned"
 
 [groups.backend]

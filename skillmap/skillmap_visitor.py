@@ -60,24 +60,37 @@ def _required_node_edges(qualified_node_id, required_node_ids):
     return "\n".join(node_requires)
 
 
+def get_group_skills_list(qualified_group_id, group_skills):
+    group_skills = [
+        skill_node(_qualified_skill_id(qualified_group_id, skill_id), skill_value)
+        for skill_id, skill_value in group_skills.items()
+    ]
+    return "\n".join(group_skills)
+
+
+def get_group_status(group_skills):
+    for _, skill_value in group_skills.items():
+        skill_status = skill_value.get("status", "")
+        if skill_status not in ("new", ""):
+            return "normal"
+    return "new"
+
+
 def group_subgraph(group_id, group_value):
     qualified_group_id = _qualify(group_id)
     group_name = group_value.get("name", "")
     group_icon = get_icon(group_value)
-    group_skills_list = ""
-    if "skills" in group_value:
-        group_skills = [
-            skill_node(_qualified_skill_id(qualified_group_id, skill_id), skill_value)
-            for skill_id, skill_value in group_value["skills"].items()
-        ]
-        group_skills_list = "\n".join(group_skills)
+    group_skills_list = get_group_skills_list(
+        qualified_group_id, group_value.get("skills", {})
+    )
+    group_status = get_group_status(group_value.get("skills", {}))
 
     group_requires_list = _required_node_edges(
         qualified_group_id, group_value.get("requires", [])
     )
 
     group_id_and_name = f"subgraph {qualified_group_id}[{group_icon} {group_name}]"
-    group_style = f"class {qualified_group_id} skillGroup;"
+    group_style = f"class {qualified_group_id} {group_status}SkillGroup;"
     group_subgraph_end = "end"
     sections = [
         SECTION_SEPARATOR,
@@ -110,7 +123,7 @@ def skill_map_graph(skill_map):
     map_group_subgraphs = group_subgraphs(skill_map.get("groups", {}))
 
     skill_map_node = f"{map_name}({map_icon} <br/>{map_name})"
-    skill_map_node_style = f"class {map_name} skillGroup;"
+    skill_map_node_style = f"class {map_name} normalSkillGroup;"
     sections = [
         "flowchart TD",
         skill_map_node,

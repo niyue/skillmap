@@ -53,7 +53,7 @@ def test_visit_group_without_skill():
         "subgraph groups.g1[fa:fa-anchor web ui]",
         "",  # skill list is skipped
         "end",
-        "class groups.g1 skillGroup;",
+        "class groups.g1 newSkillGroup;",
         ""
     ]
     assert group_graph.split("\n") == sections
@@ -81,7 +81,7 @@ def test_visit_group():
         "class groups.g1.skills.s2 newSkill;",
         "",
         "end",
-        "class groups.g1 skillGroup;",
+        "class groups.g1 newSkillGroup;",
         ""
     ]
     assert group_graph.split("\n") == sections
@@ -100,7 +100,7 @@ def test_visit_group_with_requires():
         "subgraph groups.g1[fa:fa-anchor web ui]",
         "",  # skill list is skipped
         "end",
-        "class groups.g1 skillGroup;",
+        "class groups.g1 newSkillGroup;",
         "groups.g2.skills.s1-->groups.g1",
     ]
     assert group_graph.split("\n") == sections
