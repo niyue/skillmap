@@ -1,0 +1,10 @@
+classDef normalSkillGroup stroke-width:4px,stroke:#DAC3E8,fill:#DEC9E9;
+classDef beingLearnedSkill stroke-width:2px,stroke:#C19EE0,fill:#D2B7E5;
+classDef learnedSkill stroke-width:2px,stroke:#B185DB,fill:#C19EE0;
+
+classDef newSkillGroup stroke-width:4px,stroke:#D6CCC2,fill:#EDEDE9;
+classDef newSkill stroke-width:2px,stroke:#D6CCC2,fill:#EDEDE9;
+classDef unknownSkill stroke-width:2px,stroke:#D6CCC2,fill:#EDEDE9;
+
+%% https://www.w3schools.com/colors/colors_groups.asp
+linkStyle default stroke-width:2px,stroke:RebeccaPurple;

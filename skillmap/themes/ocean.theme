@@ -1,7 +1,8 @@
-classDef skillGroup stroke:#0096C7,stroke-width:4px,fill:#CAF0F8;
-classDef unmasteredSkillGroup stroke:#D6CCC2,stroke-width:2px,fill:#EDEDE9;
+classDef normalSkillGroup stroke:#0096C7,stroke-width:4px,fill:#CAF0F8;
 
-classDef newSkill stroke:#D6CCC2,stroke-width:2px,fill:#EDEDE9;
-classDef beingLearnedSkill stroke:#90E0EF,stroke-width:2px,fill:#ADE8F4;
-classDef learnedSkill stroke:#00B4D8,stroke-width:2px,fill:#48CAE4;
-classDef unknownSkill stroke:#D6CCC2,stroke-width:2px,fill:#EDEDE9;
+classDef beingLearnedSkill stroke-width:2px,stroke:#90E0EF,fill:#ADE8F4;
+classDef learnedSkill stroke-width:2px,stroke:#00B4D8,fill:#48CAE4;
+
+classDef newSkillGroup stroke-width:4px,stroke:#D6CCC2,fill:#EDEDE9;
+classDef newSkill stroke-width:2px,stroke:#D6CCC2,fill:#EDEDE9;
+classDef unknownSkill stroke-width:2px,stroke:#D6CCC2,fill:#EDEDE9;

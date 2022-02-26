@@ -1,0 +1,11 @@
+classDef normalSkillGroup stroke-width:4px,stroke:#99D98C,fill:#D9ED92;
+
+classDef beingLearnedSkill stroke-width:2px,stroke:#76C893,fill:#99D98C;
+classDef learnedSkill stroke-width:2px,stroke:#52B69A,fill:#76C893;
+
+classDef newSkillGroup stroke-width:4px,stroke:#D6CCC2,fill:#EDEDE9;
+classDef newSkill stroke-width:2px,stroke:#D6CCC2,fill:#EDEDE9;
+classDef unknownSkill stroke-width:2px,stroke:#D6CCC2,fill:#EDEDE9;
+
+%% https://www.w3schools.com/colors/colors_groups.asp
+linkStyle default stroke-width:2px,stroke:OliveDrab;
