@@ -19,9 +19,17 @@ def theme_css_styles(theme):
         return f.read()
 
 
+def _qualify(group_id):
+    return f"groups.{group_id}"
+
+
+def _qualified_skill_id(qualified_group_id, skill_id):
+    return f"{qualified_group_id}.skills.{skill_id}"
+
+
 def groups_edges(map_name, groups):
-    group_ids = [group_id for group_id, _ in groups.items()]
-    groups_edges = "\n".join([f"{map_name}-->{group_id}" for group_id in group_ids])
+    group_ids = [_qualify(group_id) for group_id, _ in groups.items()]
+    groups_edges = "\n".join([f"{map_name}-->{gid}" for gid in group_ids])
     return groups_edges
 
 
@@ -34,27 +42,42 @@ def skill_node(skill_id, skill_value):
     skill_status = skill_value.get("status", "new")
     skill_id_and_name = f"{skill_id}({skill_icon} <br/>{skill_name})"
     skill_style = f"class {skill_id} {skill_status}Skill;"
+    skill_requires = _required_node_edges(skill_id, skill_value.get("requires", []))
     sections = [
         skill_id_and_name,
         skill_style,
+        skill_requires,
     ]
     skill_graph = "\n".join(sections)
     return skill_graph
 
 
+def _required_node_edges(qualified_node_id, required_node_ids):
+    node_requires = [
+        f"{required_node_id}-->{qualified_node_id}"
+        for required_node_id in required_node_ids
+    ]
+    return "\n".join(node_requires)
+
+
 def group_subgraph(group_id, group_value):
+    qualified_group_id = _qualify(group_id)
     group_name = group_value.get("name", "")
     group_icon = get_icon(group_value)
     group_skills_list = ""
     if "skills" in group_value:
         group_skills = [
-            skill_node(skill_id, skill_value)
+            skill_node(_qualified_skill_id(qualified_group_id, skill_id), skill_value)
             for skill_id, skill_value in group_value["skills"].items()
         ]
         group_skills_list = "\n".join(group_skills)
 
-    group_id_and_name = f"subgraph {group_id}[{group_icon} {group_name}]"
-    group_style = f"class {group_id} skillGroup;"
+    group_requires_list = _required_node_edges(
+        qualified_group_id, group_value.get("requires", [])
+    )
+
+    group_id_and_name = f"subgraph {qualified_group_id}[{group_icon} {group_name}]"
+    group_style = f"class {qualified_group_id} skillGroup;"
     group_subgraph_end = "end"
     sections = [
         SECTION_SEPARATOR,
@@ -62,6 +85,7 @@ def group_subgraph(group_id, group_value):
         group_skills_list,
         group_subgraph_end,
         group_style,
+        group_requires_list,
     ]
 
     group_graph = "\n".join(sections)

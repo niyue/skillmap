@@ -3,11 +3,12 @@ name = "urlshortener"
 
 [groups.webui]
 name = "web ui"
-icon = "chrome"
-requires = ["groups.backend.skills.api"]
+icon = "anchor"
+requires = ["groups.backend.skills.restapi"]
     [groups.webui.skills.url_validator]
     name = "url validator"
     icon = "globe"
+    requires = ["groups.webui.skills.react"]
     [groups.webui.skills.react]
     name = "react"
     icon = "html5"
