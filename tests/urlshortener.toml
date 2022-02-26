@@ -1,0 +1,24 @@
+[skillmap]
+name = "urlshortener"
+
+[groups.webui]
+name = "web ui"
+icon = "chrome"
+requires = ["groups.backend.skills.api"]
+    [groups.webui.skills.url_validator]
+    name = "url validator"
+    icon = "globe"
+    [groups.webui.skills.react]
+    name = "react"
+    icon = "html5"
+    status = "beingLearned"
+
+[groups.backend]
+name = "backend"
+    [groups.backend.skills.restapi]
+    name = "REST API"
+    icon = "server"
+    [groups.backend.skills.database]
+    name = "database"
+    icon = "database"
+    status = "learned"

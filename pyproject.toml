@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "skillmap"
+version = "0.1.0"
+description = "Skillmap generates a skill tree from a toml file"
+authors = ["Yue Ni <niyue.com@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+toml = "^0.10.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+skillmap = 'skillmap.main:main'

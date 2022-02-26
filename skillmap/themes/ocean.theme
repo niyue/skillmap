@@ -1,0 +1,6 @@
+classDef skillGroup stroke:#0096C7,stroke-width:4px,fill:#CAF0F8;
+classDef unmasteredSkillGroup stroke:#D6CCC2,stroke-width:2px,fill:#EDEDE9;
+
+classDef newSkill stroke:#D6CCC2,stroke-width:2px,fill:#EDEDE9;
+classDef beingLearnedSkill stroke:#90E0EF,stroke-width:2px,fill:#ADE8F4;
+classDef learnedSkill stroke:#00B4D8,stroke-width:2px,fill:#48CAE4;
