@@ -1,0 +1,13 @@
+[skillmap]
+name = "hello world"
+icon = "bicycle"
+
+[groups.learn_python]
+name = "learn python"
+icon = "rocket"
+    [groups.learn_python.skills.print]
+    name = "print statement"
+    icon = "printer"
+    [groups.learn_python.skills.string]
+    name = "string literal"
+    icon = "book"

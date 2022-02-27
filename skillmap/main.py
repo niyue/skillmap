@@ -20,10 +20,10 @@ SKILLMAP_SUMMARY = package_metadada.get("Summary")
 def _skillmap_parser():
     parser = argparse.ArgumentParser(prog="skillmap")
     parser.add_argument(
-        "skillmap",
+        "descriptor_toml",
         default=False,
         type=str,
-        help="Skillmap descriptor toml file",
+        help="The path to a toml file describing the skillmap",
     )
     parser.add_argument(
         "--version",
@@ -32,13 +32,13 @@ def _skillmap_parser():
         help="show version number",
     )
 
-    parser.add_argument(
-        "-f",
-        "--format",
-        type=str,
-        default="mermaid",
-        help="export format, [mermaid] are supported",
-    )
+    # parser.add_argument(
+    #     "-f",
+    #     "--format",
+    #     type=str,
+    #     default="mermaid",
+    #     help="export format, [mermaid] are supported",
+    # )
     return parser
 
 
@@ -56,7 +56,7 @@ def generate(skillmap_file, format = None):
 
 def main():
     args = parse_sys_args(sys.argv[1:])
-    skillmap_file = Path(args["skillmap"])
-    format = args["format"]
+    skillmap_file = Path(args["descriptor_toml"])
+    # format = args["format"]
     skillmap_graph = generate(skillmap_file, format)
     print(skillmap_graph)

@@ -8,13 +8,67 @@ from skillmap.skillmap_visitor import (
 
 
 def test_generate():
-    skillmap_file = "tests/urlshortener.toml"
+    skillmap_file = "tests/url_shortener.toml"
     skillmap_graph = generate(skillmap_file)
     assert skillmap_graph
     assert "flowchart TD" in skillmap_graph
-    assert "urlshortener" in skillmap_graph
-    assert "urlshortener-->groups.webui" in skillmap_graph
+    assert "url_shortener" in skillmap_graph
+    assert "url_shortener-->groups.backend" in skillmap_graph
     assert "class groups.webui" in skillmap_graph
+
+
+def test_skillmap_node_with_missing_theme():
+    visitor = SkillMapVisitor()
+    skillmap_graph = visitor.visit(
+        {
+            "skillmap": {
+                "name": "url shortener",
+                "icon": "anchor",
+                "theme": "not_found",
+            }
+        }
+    )
+    assert skillmap_graph
+    assert "flowchart TD" in skillmap_graph
+    assert "url shortener" in skillmap_graph
+
+def test_skillmap_node_with_orientation():
+    visitor = SkillMapVisitor()
+    skillmap_graph = visitor.visit(
+        {
+            "skillmap": {
+                "name": "url shortener",
+                "icon": "anchor",
+                "orientation": "LR",
+            }
+        }
+    )
+    assert skillmap_graph
+    assert "flowchart LR" in skillmap_graph
+    assert "url shortener" in skillmap_graph
+
+def test_skillmap_node_with_auto_required_groups():
+    visitor = SkillMapVisitor()
+    skillmap_graph = visitor.visit(
+        {
+            "skillmap": {
+                "name": "url shortener",
+            },
+            "groups": {
+                "g1": {
+                    "name": "g1",
+                },
+                "g2": {
+                    "name": "g2",
+                    "requires": ["g1"],
+                },
+            },
+        }
+    )
+    assert skillmap_graph
+    assert "flowchart TD" in skillmap_graph
+    assert "url_shortener-->groups.g1" in skillmap_graph
+    assert "url_shortener-->groups.g2" not in skillmap_graph
 
 
 def test_skill_node():
@@ -30,15 +84,20 @@ def test_skill_node_with_status():
     sections = ["s1(fa:fa-globe <br/>url validator)", "class s1 beingLearnedSkill;", ""]
     assert skill_graph.split("\n") == sections
 
+
 def test_locked_skill_node():
     skill_graph = skill_node("s1", {})
     sections = ["s1(fa:fa-lock <br/>???)", "class s1 unknownSkill;", ""]
     assert skill_graph.split("\n") == sections
 
+
 def test_skill_node_with_requires():
-    skill_graph = skill_node("s1", {"name": "url validator", "icon": "globe", "requires": ["s2"]})
+    skill_graph = skill_node(
+        "s1", {"name": "url validator", "icon": "globe", "requires": ["s2"]}
+    )
     sections = ["s1(fa:fa-globe <br/>url validator)", "class s1 newSkill;", "s2-->s1"]
     assert skill_graph.split("\n") == sections
+
 
 def test_visit_group_without_skill():
     group_graph = group_subgraph(
@@ -54,7 +113,7 @@ def test_visit_group_without_skill():
         "",  # skill list is skipped
         "end",
         "class groups.g1 newSkillGroup;",
-        ""
+        "",
     ]
     assert group_graph.split("\n") == sections
 
@@ -82,9 +141,10 @@ def test_visit_group():
         "",
         "end",
         "class groups.g1 newSkillGroup;",
-        ""
+        "",
     ]
     assert group_graph.split("\n") == sections
+
 
 def test_visit_group_with_requires():
     group_graph = group_subgraph(
