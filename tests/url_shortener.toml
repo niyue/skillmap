@@ -1,7 +1,8 @@
 [skillmap]
 name = "url shortener"
 icon = "hashtag"
-theme = "pale"
+# theme = "pale"
+# orientation = "LR"
 
 [groups.webui]
 name = "web ui"
@@ -51,6 +52,7 @@ requires = ["groups.backend"]
 
 [groups.cache]
 name = "cache"
+icon = "archive"
     [groups.cache.skills.memcache]
     name = "memcache"
     icon = "magnet"

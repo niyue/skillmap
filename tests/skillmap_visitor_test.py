@@ -84,7 +84,7 @@ def test_skillmap_node_with_auto_required_groups():
 
 def test_skill_node():
     skill_graph = skill_node("s1", {"name": "url validator", "icon": "globe"})
-    sections = ["s1(fa:fa-globe <br/>url validator)", "class s1 newSkill;", ""]
+    sections = ["s1(fa:fa-globe<br/>url validator)", "class s1 newSkill;", ""]
     assert skill_graph.split("\n") == sections
 
 
@@ -92,13 +92,13 @@ def test_skill_node_with_status():
     skill_graph = skill_node(
         "s1", {"name": "url validator", "icon": "globe", "status": "beingLearned"}
     )
-    sections = ["s1(fa:fa-globe <br/>url validator)", "class s1 beingLearnedSkill;", ""]
+    sections = ["s1(fa:fa-globe<br/>url validator)", "class s1 beingLearnedSkill;", ""]
     assert skill_graph.split("\n") == sections
 
 
 def test_locked_skill_node():
     skill_graph = skill_node("s1", {})
-    sections = ["s1(fa:fa-lock <br/>???)", "class s1 unknownSkill;", ""]
+    sections = ["s1(fa:fa-lock<br/>???)", "class s1 unknownSkill;", ""]
     assert skill_graph.split("\n") == sections
 
 
@@ -106,7 +106,7 @@ def test_skill_node_with_requires():
     skill_graph = skill_node(
         "s1", {"name": "url validator", "icon": "globe", "requires": ["s2"]}
     )
-    sections = ["s1(fa:fa-globe <br/>url validator)", "class s1 newSkill;", "s2-->s1"]
+    sections = ["s1(fa:fa-globe<br/>url validator)", "class s1 newSkill;", "s2-->s1"]
     assert skill_graph.split("\n") == sections
 
 
@@ -144,10 +144,10 @@ def test_visit_group():
     sections = [
         SECTION_SEPARATOR,
         "subgraph groups.g1[fa:fa-anchor web ui]",
-        "groups.g1.skills.s1(fa:fa-globe <br/>url validator)",
+        "groups.g1.skills.s1(fa:fa-globe<br/>url validator)",
         "class groups.g1.skills.s1 newSkill;",
         "",
-        "groups.g1.skills.s2(fa:fa-html5 <br/>React)",
+        "groups.g1.skills.s2(fa:fa-html5<br/>React)",
         "class groups.g1.skills.s2 newSkill;",
         "",
         "end",

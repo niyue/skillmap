@@ -38,8 +38,9 @@ def skill_node(skill_id, skill_value):
         skill_value = locked_skill_value
     skill_name = skill_value.get("name", "")
     skill_icon = get_icon(skill_value)
+    skill_icon_label = get_icon_label(skill_icon, skill_name)
     skill_status = skill_value.get("status", "new")
-    skill_id_and_name = f"{skill_id}({skill_icon} <br/>{skill_name})"
+    skill_id_and_name = f"{skill_id}({skill_icon_label})"
     skill_style = f"class {skill_id} {skill_status}Skill;"
     skill_requires = _required_node_edges(skill_id, skill_value.get("requires", []))
     sections = [
@@ -79,6 +80,7 @@ def group_subgraph(group_id, group_value):
     qualified_group_id = _qualify(group_id)
     group_name = group_value.get("name", "")
     group_icon = get_icon(group_value)
+    group_icon_label = get_icon_label(group_icon, group_name, False)
     group_skills_list = get_group_skills_list(
         qualified_group_id, group_value.get("skills", {})
     )
@@ -88,7 +90,7 @@ def group_subgraph(group_id, group_value):
         qualified_group_id, group_value.get("requires", [])
     )
 
-    group_id_and_name = f"subgraph {qualified_group_id}[{group_icon} {group_name}]"
+    group_id_and_name = f"subgraph {qualified_group_id}[{group_icon_label}]"
     group_style = f"class {qualified_group_id} {group_status}SkillGroup;"
     group_subgraph_end = "end"
     sections = [
@@ -117,6 +119,13 @@ def get_orientation(skill_map_dict):
         orientation = "TD"
     return orientation
 
+def get_icon_label(icon, name, two_lines_layout=True):
+    if icon:
+        new_line = "<br/>" if two_lines_layout else " "
+        return f"{icon}{new_line}{name}"
+    else:
+        return name
+
 
 def skill_map_graph(skill_map):
     skill_map_dict = skill_map.get("skillmap", {})
@@ -125,11 +134,12 @@ def skill_map_graph(skill_map):
     theme = skill_map_dict.get("theme", "ocean")
     orientation = get_orientation(skill_map_dict)
     map_icon = get_icon(skill_map_dict)
+    map_icon_label = get_icon_label(map_icon, map_name)
 
     map_to_group_edges = groups_edges(map_id, skill_map.get("groups", {}))
     map_group_subgraphs = group_subgraphs(skill_map.get("groups", {}))
 
-    skill_map_node = f"{map_id}({map_icon} <br/>{map_name})"
+    skill_map_node = f"{map_id}({map_icon_label})"
     skill_map_node_style = f"class {map_id} normalSkillGroup;"
     skill_map_header = f"flowchart {orientation}"
     sections = [

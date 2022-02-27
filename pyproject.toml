@@ -3,6 +3,10 @@ name = "skillmap"
 version = "0.2.3"
 description = "Skillmap generates a skill tree from a toml file"
 authors = ["Yue Ni <niyue.com@gmail.com>"]
+readme = "README.md"
+homepage = "https://github.com/niyue/skillmap"
+repository = "https://github.com/niyue/skillmap"
+license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.8"
