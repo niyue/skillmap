@@ -1,11 +1,11 @@
 [tool.poetry]
 name = "skillmap"
-version = "0.2.2"
+version = "0.2.3"
 description = "Skillmap generates a skill tree from a toml file"
 authors = ["Yue Ni <niyue.com@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.8"
 toml = "^0.10.2"
 
 [tool.poetry.dev-dependencies]

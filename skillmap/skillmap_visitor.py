@@ -120,7 +120,7 @@ def get_orientation(skill_map_dict):
 
 def skill_map_graph(skill_map):
     skill_map_dict = skill_map.get("skillmap", {})
-    map_name = skill_map_dict.get("name", "")
+    map_name = skill_map_dict.get("name", "unamed_skill_map")
     map_id = alphanumerize(map_name)
     theme = skill_map_dict.get("theme", "ocean")
     orientation = get_orientation(skill_map_dict)

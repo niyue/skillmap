@@ -16,6 +16,17 @@ def test_generate():
     assert "url_shortener-->groups.backend" in skillmap_graph
     assert "class groups.webui" in skillmap_graph
 
+def test_skillmap_node_with_missing_name():
+    visitor = SkillMapVisitor()
+    skillmap_graph = visitor.visit(
+        {
+            "skillmap": {
+            }
+        }
+    )
+    assert skillmap_graph
+    assert "flowchart TD" in skillmap_graph
+    assert "unamed_skill_map" in skillmap_graph
 
 def test_skillmap_node_with_missing_theme():
     visitor = SkillMapVisitor()
