@@ -11,10 +11,12 @@ icon = "desktop"
     name = "url validator"
     icon = "globe"
     requires = ["groups.webui.skills.react"]
+    progress = "0/3"
     [groups.webui.skills.react]
     name = "react"
     icon = "list"
     status = "beingLearned"
+    progress = "1/3"
 
 [groups.native_client]
 name = "native client"
@@ -32,10 +34,12 @@ icon = "server"
     name = "REST API"
     icon = "send"
     status = "learned"
+    progress = "3/3"
     [groups.backend.skills.database]
     name = "database"
     icon = "database"
     status = "learned"
+    progress = "3/3"
 
 [groups.partitioned_backend]
 name = "partitioned backend"
@@ -45,6 +49,7 @@ requires = ["groups.backend"]
     name = "proxy"
     icon = "anchor"
     status = "beingLearned"
+    progress = "2/3"
     [groups.partitioned_backend.skills.database]
     name = "partitioned database"
     icon = "database"

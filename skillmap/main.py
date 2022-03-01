@@ -7,7 +7,7 @@ import argparse
 from distutils.util import strtobool
 
 from skillmap.skillmap_parser import SkillMapParser
-from skillmap.skillmap_visitor import SkillMapVisitor
+from skillmap.nodes.skillmap_node import create_skillmap_graph
 
 import importlib.metadata
 
@@ -32,13 +32,6 @@ def _skillmap_parser():
         help="show version number",
     )
 
-    # parser.add_argument(
-    #     "-f",
-    #     "--format",
-    #     type=str,
-    #     default="mermaid",
-    #     help="export format, [mermaid] are supported",
-    # )
     return parser
 
 
@@ -50,7 +43,7 @@ def parse_sys_args(sys_args):
 
 def generate(skillmap_file, format = None):
     skillmap_dict = SkillMapParser().parse(skillmap_file)
-    skillmap_graph = SkillMapVisitor().visit(skillmap_dict)
+    skillmap_graph = create_skillmap_graph(skillmap_dict)
     return skillmap_graph
 
 

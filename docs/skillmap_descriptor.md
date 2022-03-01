@@ -26,10 +26,7 @@
   * `name`: [optional] the name of the skillmap/group/skill. It will be used as a label in the diagram. .
   * `icon`: [optional] a fontawsome icon name. It will be used as an icon in the diagram. You can find the fontawsome icon list [here](https://fontawesome.com/v4.7.0/icons/).
   * `requires`: [optional] a list of strings. It indicates a list of skill groups or skills to be learned before this learning this skill group/skill. where each string is a toml table name of a group/skill. It will be rendered as an edge(s) from one node to another. 
-  * `status`: [optional] only applies to a `skill` toml table. It indicates the status of the skill. Nodes will be rendered with different colors according to different statuses. It can be one of the following:
-    * `new`: the skill is newly unveiled and not master/learned yet (default value if not specified)
-    * `beingLearned`: the skill is being leanred currently.
-    * `learned`: the skill is learned.
+  * `progress`: [optional] only applies to a `skill` toml table. It is a fraction number string like `1/3` that indicates the learning progression of the skill. A progress bar like `■□□` will be shown in the skill node to visualize the progress. Skill nodes will be rendered with different colors according to different progresses (zero progress, ongoing, finished).
   * locked skill: if a skill table doesn't have name or icon, it will be rendered as a locked skill (a grey box + lock icon + `???` as name).
 
 ## Example

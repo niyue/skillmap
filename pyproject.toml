@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "skillmap"
-version = "0.2.3"
+version = "0.3.0"
 description = "Skillmap generates a skill tree from a toml file"
 authors = ["Yue Ni <niyue.com@gmail.com>"]
 readme = "README.md"
