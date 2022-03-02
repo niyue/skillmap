@@ -88,7 +88,7 @@ def test_visit_group_without_skill():
     )
     sections = [
         SECTION_SEPARATOR,
-        "subgraph groups.g1[fa:fa-anchor web ui]",
+        'subgraph groups.g1["fa:fa-anchor web ui"]',
         "",  # skill list is skipped
         "end",
         "class groups.g1 newSkillGroup;",
@@ -111,7 +111,7 @@ def test_visit_group():
     )
     sections = [
         SECTION_SEPARATOR,
-        "subgraph groups.g1[fa:fa-anchor web ui]",
+        'subgraph groups.g1["fa:fa-anchor web ui"]',
         'groups.g1.skills.s1("fa:fa-globe<br/>url validator")',
         "class groups.g1.skills.s1 newSkill;",
         "",
@@ -136,7 +136,7 @@ def test_visit_group_with_requires():
     )
     sections = [
         SECTION_SEPARATOR,
-        "subgraph groups.g1[fa:fa-anchor web ui]",
+        'subgraph groups.g1["fa:fa-anchor web ui"]',
         "",  # skill list is skipped
         "end",
         "class groups.g1 newSkillGroup;",

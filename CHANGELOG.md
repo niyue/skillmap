@@ -1,5 +1,5 @@
-# 0.3.0 - 2022-03-01
-* support progress bar for skill
+# 0.3.0 - 2022-03-02
+* support different styles of progress bar for skill
 # 0.2.3 - 2022-02-27
 * add a default skill map name and mark python 3.8 to be the min version
 # 0.2.2 - 2022-02-27

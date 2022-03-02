@@ -8,6 +8,11 @@ This project borrows inspiration and ideas from two sources:
 1. https://hacks.mozilla.org/2018/10/webassemblys-post-mvp-future/
 2. https://github.com/nikomatsakis/skill-tree
 
+# Features
+* skill tree/map generation
+* specify pre-requisite skills
+* multiple themes
+* multiple skill progress bar styles
 # Installation
 ```
 pip install skillmap
@@ -43,6 +48,7 @@ icon = "rocket"
 
 * Each node can have a string label and an fontawsome icon.
 * Skills with different statuses will be shown with different colors.
+* Each skill may have a progress bar to indicate its learning progress.
 * Unnamed skill will be shown as a locked skill.
 * Pre-requisite skills will be connected with an directed edge.
 * You can embed the generated mermaid diagram into github markdown directly, but the fontawesome icons in the diagrams are not shown by github so far.
@@ -57,3 +63,5 @@ icon = "rocket"
         * [`entr`](https://github.com/eradman/entr), run arbitrary commands when files change
         * [Visual Studio Code](https://code.visualstudio.com) + [Markdown Preview Enhanced Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=shd101wyy.markdown-preview-enhanced)
         * Basically, use `entr` to watch toml file changes, and generate a `md` makrdown file using `skillmap` every time when toml file changes. And use `vscode` + `Markdown Preview Enhanced` extension to open this generated markdown file. Check out `build_sample` and `dev_sample` in [justfile](justfile) to see how to make hot reloading work
+# Known issues
+* Sometimes, the group's text will be clipped when rendered in mermaid. And you have to edit the generated file slightly and then change it back to ask mermaid to refersh the diagram to avoid clipping. It is probably a bug for mermaid as far as I can tell. 

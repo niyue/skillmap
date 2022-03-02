@@ -23,7 +23,7 @@ def _skillmap_parser():
         "descriptor_toml",
         default=False,
         type=str,
-        help="The path to a toml file describing the skillmap",
+        help="The path to a toml file describing the skillmap. You can find more deetails https://github.com/niyue/skillmap/blob/main/docs/skillmap_descriptor.md",
     )
     parser.add_argument(
         "--version",
