@@ -3,6 +3,7 @@ name = "url shortener"
 icon = "hashtag"
 # theme = "pale"
 # orientation = "LR"
+# progress_bar_style = 16
 
 [groups.webui]
 name = "web ui"

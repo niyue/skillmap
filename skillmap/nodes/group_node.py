@@ -1,4 +1,9 @@
-from skillmap.nodes.common import get_icon, get_node_content, get_required_node_edges, SECTION_SEPARATOR
+from skillmap.nodes.common import (
+    get_icon,
+    get_node_content,
+    get_required_node_edges,
+    SECTION_SEPARATOR,
+)
 from skillmap.nodes.skill_node import create_skill_node
 
 
@@ -20,10 +25,12 @@ def create_groups_edges(map_id, groups):
     return groups_edges
 
 
-def get_group_skills_list(qualified_group_id, group_skills):
+def get_group_skills_list(qualified_group_id, group_skills, progress_bar_style=0):
     group_skills = [
         create_skill_node(
-            _qualified_skill_id(qualified_group_id, skill_id), skill_value
+            _qualified_skill_id(qualified_group_id, skill_id),
+            skill_value,
+            progress_bar_style,
         )
         for skill_id, skill_value in group_skills.items()
     ]
@@ -38,13 +45,13 @@ def get_group_status(group_skills):
     return "new"
 
 
-def create_group_subgraph(group_id, group_value):
+def create_group_subgraph(group_id, group_value, progress_bar_style=0):
     qualified_group_id = _qualify(group_id)
     group_name = group_value.get("name", "")
     group_icon = get_icon(group_value)
     group_icon_label = get_node_content([group_icon, group_name], False)
     group_skills_list = get_group_skills_list(
-        qualified_group_id, group_value.get("skills", {})
+        qualified_group_id, group_value.get("skills", {}), progress_bar_style
     )
     group_status = get_group_status(group_value.get("skills", {}))
 
@@ -52,7 +59,7 @@ def create_group_subgraph(group_id, group_value):
         qualified_group_id, group_value.get("requires", [])
     )
 
-    group_id_and_name = f"subgraph {qualified_group_id}[{group_icon_label}]"
+    group_id_and_name = f"subgraph {qualified_group_id}[\"{group_icon_label}\"]"
     group_style = f"class {qualified_group_id} {group_status}SkillGroup;"
     group_subgraph_end = "end"
     sections = [
@@ -68,9 +75,9 @@ def create_group_subgraph(group_id, group_value):
     return group_graph
 
 
-def create_group_subgraphs(groups):
+def create_group_subgraphs(groups, progress_bar_style=0):
     group_graphs = [
-        create_group_subgraph(group_id, group_value)
+        create_group_subgraph(group_id, group_value, progress_bar_style)
         for group_id, group_value in groups.items()
     ]
     return "\n\n".join(group_graphs)

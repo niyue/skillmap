@@ -15,20 +15,32 @@ def get_orientation(skill_map_dict):
     return orientation
 
 
+def get_progress_bar_style(skill_map_dict):
+    progress_bar_style = 0
+    try:
+        progress_bar_style = int(skill_map_dict.get("progress_bar_style", 0))
+    except: 
+        pass
+    return progress_bar_style
+
+
 # generate a mermaid graph from a skill map toml dict
 def create_skillmap_graph(skill_map):
     skill_map_dict = skill_map.get("skillmap", {})
     map_name = skill_map_dict.get("name", "unamed_skill_map")
     map_id = alphanumerize(map_name)
     theme = skill_map_dict.get("theme", "ocean")
+    progress_bar_style = get_progress_bar_style(skill_map_dict)
     orientation = get_orientation(skill_map_dict)
     map_icon = get_icon(skill_map_dict)
     map_icon_label = get_node_content([map_icon, map_name])
 
     map_to_group_edges = create_groups_edges(map_id, skill_map.get("groups", {}))
-    map_group_subgraphs = create_group_subgraphs(skill_map.get("groups", {}))
+    map_group_subgraphs = create_group_subgraphs(
+        skill_map.get("groups", {}), progress_bar_style
+    )
 
-    skill_map_node = f"{map_id}({map_icon_label})"
+    skill_map_node = f"{map_id}(\"{map_icon_label}\")"
     skill_map_node_style = f"class {map_id} normalSkillGroup;"
     skill_map_header = f"flowchart {orientation}"
     sections = [
