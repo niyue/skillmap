@@ -49,9 +49,10 @@ icon = "rocket"
 * Each node can have a string label and an fontawsome icon.
 * Skills with different statuses will be shown with different colors.
 * Each skill may have a progress bar to indicate its learning progress.
-* Unnamed skill will be shown as a locked skill.
 * Pre-requisite skills will be connected with an directed edge.
 * You can embed the generated mermaid diagram into github markdown directly, but the fontawesome icons in the diagrams are not shown by github so far.
+* Unnamed skill (a skill node only has its toml table id but without any table property) will be shown as a locked skill. I find this is a useful analogy when you have a problem in your project that you don't have any clue how it should be solved yet.
+* You can find the skill map toml for the above exmaples [here](tests/url_shortener.toml)
 
 # License
 [MIT License](LICENSE)
