@@ -2,11 +2,15 @@
 A tool for generating skill map/tree like diagram.
 
 # What is a skill map/tree?
-Skill tree is a term used in video games, and it can be used for describing roadmaps for software project development as well.
+Skill tree is a term used in video games, and it can be used for describing roadmaps for software project development as well. When you are building a software project, you can use the concept of skill tree/technology tree to describe the steps you need to take to build the project.
 
-This project borrows inspiration and ideas from two sources:
+> In strategy games, a technology, tech, or research tree is a hierarchical visual representation of the possible sequences of upgrades a player can take (most often through the act of research). Because these trees are technically directed and acyclic, they can more accurately be described as a technology directed acyclic graph.
+-- https://en.wikipedia.org/wiki/Technology_tree
+
+This project borrows inspiration and ideas from several sources:
 1. https://hacks.mozilla.org/2018/10/webassemblys-post-mvp-future/
 2. https://github.com/nikomatsakis/skill-tree
+3. https://en.wikipedia.org/wiki/Technology_tree
 
 # Features
 * skill tree/map generation
